@@ -1,0 +1,4 @@
+psycopg2==2.9.9
+python_dotenv==1.0.0
+sqlalchemy==2.0.22
+humanize==4.8.0
