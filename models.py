@@ -31,6 +31,7 @@ class PurchaseHistory(Base):
     amount: Mapped[int] = mapped_column()
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
     user_id: Mapped[int] = mapped_column(ForeignKey("auth_user.id"))
+    product_id: Mapped[int] = mapped_column(ForeignKey("product.id"))
 
     def __repr__(self):
         return (
@@ -45,20 +46,21 @@ class PurchaseHistory(Base):
         )
 
 
-class Products(Base):
-    __tablename__ = "products"
+class Product(Base):
+    __tablename__ = "product"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     product_name: Mapped[str] = mapped_column(String(256), unique=True)
     amount: Mapped[int] = mapped_column()
-    product_id: Mapped[int] = mapped_column(ForeignKey("purchase_history.id"))
+    history_id: Mapped[int] = mapped_column()
 
     def __repr__(self):
         return (
             f"""
-            Products(
+            Product(
             {self.id=},
             {self.product_name=},
-            {self.amount=})
+            {self.amount=}
+            {self.history_id=})
             """
         )

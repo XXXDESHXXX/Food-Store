@@ -21,9 +21,3 @@ def validate_username(username: str) -> None:
         raise ValueError(
             f"Username length must be greater than {MIN_USERNAME_LENGTH} or equal to {MAX_USERNAME_LENGTH}"
         )
-
-
-def validate_amount(amount: str) -> None:
-    temp_amount = amount.replace('.', '', 1)
-    if not temp_amount.isdigit():
-        raise ValueError(f"{amount} is not valid amount")
