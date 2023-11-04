@@ -3,15 +3,15 @@ from validators import validate_username
 
 
 class UsernameValidatorTest(TestCase):
-    def test_validate_username(self):
+    def test_validate_username(self) -> None:
         self.assertEqual(validate_username("USERTEST"), None)
 
-    def test_minimum_username_length(self):
+    def test_minimum_username_length(self) -> None:
         with self.assertRaises(ValueError) as e:
             validate_username("User123")
         self.assertEqual("Username length must be greater than 8 or equal to 48", e.exception.args[0])
 
-    def test_maximum_username_length(self):
+    def test_maximum_username_length(self) -> None:
         username = (
             "3" * 51
         )

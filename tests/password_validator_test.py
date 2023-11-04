@@ -3,15 +3,15 @@ from validators import validate_password
 
 
 class PasswordValidatorTest(TestCase):
-    def test_validate_password(self):
+    def test_validate_password(self) -> None:
         self.assertEqual(validate_password("123456789"), None)
 
-    def test_minimum_password_length(self):
+    def test_minimum_password_length(self) -> None:
         with self.assertRaises(ValueError) as e:
             validate_password("12345")
         self.assertEqual("Password length must be greater than 6 or equal to 256", e.exception.args[0])
 
-    def test_maximum_password_length(self):
+    def test_maximum_password_length(self) -> None:
         password = (
             "3" * 257
         )
@@ -19,7 +19,7 @@ class PasswordValidatorTest(TestCase):
             validate_password(password)
         self.assertEqual("Password length must be greater than 6 or equal to 256", e.exception.args[0])
 
-    def test_prohibited_characters(self):
+    def test_prohibited_characters(self) -> None:
         with self.assertRaises(ValueError) as e:
             validate_password("{}12345678//.")
 
