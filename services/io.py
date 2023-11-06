@@ -3,7 +3,7 @@ from enum import Enum
 
 from humanize import naturalday
 
- from services.selectors.purchase_history import get_purchase_history
+from services.selectors.purchase_history import get_purchase_history
 from validators import validate_password, validate_username
 
 
