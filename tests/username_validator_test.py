@@ -1,4 +1,6 @@
 from unittest import TestCase, main
+
+from constants import MAX_USERNAME_LENGTH
 from validators import validate_username
 
 
@@ -13,7 +15,7 @@ class UsernameValidatorTest(TestCase):
 
     def test_maximum_username_length(self) -> None:
         username = (
-            "3" * 51
+            "3" * MAX_USERNAME_LENGTH + "1"
         )
         with self.assertRaises(ValueError) as e:
             validate_username(username)

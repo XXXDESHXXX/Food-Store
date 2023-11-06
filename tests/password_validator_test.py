@@ -1,4 +1,6 @@
 from unittest import TestCase, main
+
+from constants import MAX_PASSWORD_LENGTH
 from validators import validate_password
 
 
@@ -13,7 +15,7 @@ class PasswordValidatorTest(TestCase):
 
     def test_maximum_password_length(self) -> None:
         password = (
-            "3" * 257
+            "3" * MAX_PASSWORD_LENGTH + "1"
         )
         with self.assertRaises(ValueError) as e:
             validate_password(password)

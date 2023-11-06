@@ -20,5 +20,5 @@ class IsWantToRegisterTest(TestCase):
         mock_print.assert_called_with("Invalid option selected")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
