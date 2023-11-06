@@ -28,6 +28,7 @@ class PurchaseHistory(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     product_name: Mapped[str] = mapped_column(String(256))
+    total_price: Mapped[float] = mapped_column()
     amount: Mapped[int] = mapped_column()
     created_at: Mapped[datetime] = mapped_column(default=datetime.now)
     user_id: Mapped[int] = mapped_column(ForeignKey("auth_user.id"))
@@ -38,6 +39,7 @@ class PurchaseHistory(Base):
             f"""
             PurchaseHistory(
             {self.id=},
+            {self.total_price=}
             {self.product_name=},
             {self.amount=},
             {self.created_at=},
@@ -50,6 +52,7 @@ class Product(Base):
     __tablename__ = "product"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    price: Mapped[float] = mapped_column()
     product_name: Mapped[str] = mapped_column(String(256), unique=True)
     amount: Mapped[int] = mapped_column()
     history_id: Mapped[int] = mapped_column()
@@ -59,6 +62,7 @@ class Product(Base):
             f"""
             Product(
             {self.id=},
+            {self.price=},
             {self.product_name=},
             {self.amount=}
             {self.history_id=})
