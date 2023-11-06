@@ -25,6 +25,7 @@ class AuthIO(AbstractAuthIO):
         except ValueError as error:
             print(error)
             return self.get_username()
+        return username
 
     def get_password(self) -> str:
         password = input("Enter a password: ")
@@ -33,6 +34,7 @@ class AuthIO(AbstractAuthIO):
         except ValueError as error:
             print(error)
             return self.get_password()
+        return password
 
 
 def is_want_to_register() -> bool:
