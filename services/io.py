@@ -3,6 +3,7 @@ from enum import Enum
 
 from humanize import naturalday
 
+from services.selectors.products import get_products
 from services.selectors.purchase_history import get_purchase_history
 from validators import validate_password, validate_username
 
@@ -40,7 +41,7 @@ class AuthIO(AbstractAuthIO):
 def is_want_to_register() -> bool:
     answer = input("Choose the option:\n1. Register\n2. Log in\n")
     if answer != "1" and answer != "2":
-        print(f"Invalid option selected")
+        print("Invalid option selected")
         return is_want_to_register()
     return answer == "1"
 
@@ -48,20 +49,32 @@ def is_want_to_register() -> bool:
 class MenuOptions(Enum):
     PURCHASE_MENU = 1
     PRINT_PURCHASE_HISTORY = 2
-    EXIT = 3
+    SHOW_PRODUCTS = 3
+    EXIT = 4
 
 
 def get_menu_option() -> MenuOptions:
-    option = input("Choose menu option:\n1. Go to the converter menu\n2. Print purchase history\n3. Exit\n")
-    if option != "1" and option != "2" and option != "3":
+    option = input(
+        "Choose menu option:\n1. Go to the converter menu\n2. Print purchase history\n3. Show products\n4. Exit\n"
+    )
+    if option != "1" and option != "2" and option != "3" and option != "4":
         print("Invalid option selected")
         return get_menu_option()
     options_map = {
         "1": MenuOptions.PURCHASE_MENU,
         "2": MenuOptions.PRINT_PURCHASE_HISTORY,
-        "3": MenuOptions.EXIT,
+        "3": MenuOptions.SHOW_PRODUCTS,
+        "4": MenuOptions.EXIT,
     }
     return options_map[option]
+
+
+def get_product_name() -> str:
+    return input("Enter the product you want to take: ")
+
+
+def get_amount() -> str:
+    return input("Enter the amount of product you want to take: ")
 
 
 def show_purchase_history(user_id: int) -> None:
@@ -76,3 +89,17 @@ def show_purchase_history(user_id: int) -> None:
         )
     else:
         print("There is no previous purchases")
+
+
+def show_products() -> None:
+    products = get_products()
+    for i, product in enumerate(products, start=1):
+        print(
+            f"""
+            {i}. {product.name}
+            Amount is: {product.amount}
+            Price is: {product.price}.
+            """
+        )
+    else:
+        print("There is no products")

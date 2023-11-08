@@ -17,12 +17,7 @@ class User(Base):
     )
 
     def __repr__(self):
-        return (
-            f"User("
-            f"{self.id=},"
-            f"{self.username=},"
-            f"{self.password=})"
-        )
+        return f"User(" f"{self.id=}," f"{self.username=}," f"{self.password=})"
 
 
 class PurchaseHistory(Base):

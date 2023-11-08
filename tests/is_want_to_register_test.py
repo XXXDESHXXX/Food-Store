@@ -4,7 +4,6 @@ from services.io import is_want_to_register
 
 
 class IsWantToRegisterTest(TestCase):
-
     @patch("builtins.input", return_value="1")
     def test_valid_register_option(self, mock_input):
         self.assertTrue(is_want_to_register())
