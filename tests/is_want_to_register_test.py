@@ -14,7 +14,7 @@ class IsWantToRegisterTest(TestCase):
 
     @patch("builtins.input", side_effect=["3", "1"])
     @patch("builtins.print")
-    def test_invalid_option_then_valid_register_option(self, mock_print, mock_input):
+    def test_invalid_option_(self, mock_print, mock_input):
         self.assertTrue(is_want_to_register())
         mock_print.assert_called_with("Invalid option selected")
 

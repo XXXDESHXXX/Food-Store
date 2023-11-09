@@ -53,6 +53,5 @@ class Product(Base):
             f"{self.id=},"
             f"{self.price=},"
             f"{self.name=},"
-            f"{self.amount=},"
-            f"{self.history_id=})"
+            f"{self.amount=})"
         )
