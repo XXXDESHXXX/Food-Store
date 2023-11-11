@@ -1,6 +1,7 @@
 from database import create_tables
 from services.auth import create_user, log_in
-from services.io import AuthIO, is_want_to_register, get_menu_option, MenuOptions, show_purchase_history, show_products
+from services.io import AuthIO, is_want_to_register, get_menu_option, MenuOptions, show_purchase_history, show_products, \
+    get_amount, get_product_name
 
 
 def main() -> None:
@@ -18,7 +19,8 @@ def main() -> None:
         menu_option = get_menu_option()
         match menu_option:
             case MenuOptions.PURCHASE_MENU:
-                pass
+                name = get_product_name()
+                amount = get_amount()
             case MenuOptions.PRINT_PURCHASE_HISTORY:
                 show_purchase_history(user.id)
             case MenuOptions.SHOW_PRODUCTS:
