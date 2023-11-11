@@ -5,7 +5,7 @@ from humanize import naturalday
 
 from services.selectors.products import get_products
 from services.selectors.purchase_history import get_purchase_history
-from validators import validate_password, validate_username
+from validators import password_length_validator, username_length_validator
 
 
 class AbstractAuthIO(ABC):
@@ -19,22 +19,14 @@ class AbstractAuthIO(ABC):
 
 
 class AuthIO(AbstractAuthIO):
+    @username_length_validator
     def get_username(self) -> str:
         username = input("Enter a username: ")
-        try:
-            validate_username(username)
-        except ValueError as error:
-            print(error)
-            return self.get_username()
         return username
 
+    @password_length_validator
     def get_password(self) -> str:
         password = input("Enter a password: ")
-        try:
-            validate_password(password)
-        except ValueError as error:
-            print(error)
-            return self.get_password()
         return password
 
 
