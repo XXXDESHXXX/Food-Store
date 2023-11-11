@@ -6,4 +6,3 @@ def calculate() -> float:
     amount = get_amount()
     price = get_product_price()
     return price * int(amount)
-

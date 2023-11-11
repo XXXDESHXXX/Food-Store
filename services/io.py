@@ -55,7 +55,7 @@ class MenuOptions(Enum):
 
 def get_menu_option() -> MenuOptions:
     option = input(
-        "Choose menu option:\n1. Go to the converter menu\n2. Print purchase history\n3. Show products\n4. Exit\n"
+        "Choose menu option:\n1. Go to the purchase menu\n2. Print purchase history\n3. Show products\n4. Exit\n"
     )
     if option != "1" and option != "2" and option != "3" and option != "4":
         print("Invalid option selected")

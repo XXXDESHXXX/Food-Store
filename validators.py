@@ -42,3 +42,17 @@ def username_length_validator(func):
 @username_length_validator
 def validate_username(username: str) -> None:
     print(f"This username is valid")
+
+
+def amount_validator(func):
+    def wrapper(amount) -> str:
+        temp_amount = amount.replace(".", '', 1)
+        if not temp_amount.isdigit():
+            raise ValueError(f"{amount} is not valid amount")
+        return func(amount)
+    return wrapper
+
+
+@amount_validator
+def validate_amount(amount: str) -> None:
+    print("Amount is valid")
