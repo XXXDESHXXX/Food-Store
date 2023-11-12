@@ -17,11 +17,3 @@ class Config:
         f"{DB_HOST}/"
         f"{DB_NAME}"
     )
-
-
-class TestConfig(Config):
-    DB_NAME = os.getenv("TEST_DB_NAME")
-    DB_HOST = os.getenv("TEST_DB_HOST")
-    DB_PORT = os.getenv("DB_PORT")
-    DB_PASSWORD = os.getenv("DB_PASSWORD")
-    DB_USER = os.getenv("DB_USER")

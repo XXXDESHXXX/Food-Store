@@ -55,3 +55,6 @@ class Product(Base):
             f"{self.name=},"
             f"{self.amount=})"
         )
+
+    def get_total_price(self) -> float:
+        return self.price * self.amount

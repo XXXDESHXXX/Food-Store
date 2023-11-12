@@ -6,8 +6,8 @@ from config import Config
 Base = declarative_base()
 
 engine = create_engine(Config.DB_DSN)
-session_maker = sessionmaker(engine)
+session_maker = sessionmaker(bind=engine)
 
 
 def create_tables() -> None:
-    Base.metadata.create_all(engine)
+    Base.metadata.create_all(bind=engine)

@@ -1,12 +1,17 @@
 from unittest import TestCase, main
+from unittest.mock import patch
 
 from constants import MAX_USERNAME_LENGTH
-from validators import get_username
+from services.io import AuthIO
+from validators import username_length_validator
 
 
 class UsernameValidatorTest(TestCase):
-    def test_validate_username(self) -> None:
-        self.assertEqual(get_username("USERTEST"), None)
+    auth_io = AuthIO()
+
+    @patch("builtins.input", return_value="USERTEST")
+    def test_validate_username(self, *args, **kwargs) -> None:
+        self.assertEqual(username_length_validator(self.auth_io.get_username)(), "USERTEST")
 
     def test_minimum_username_length(self) -> None:
         with self.assertRaises(ValueError) as e:

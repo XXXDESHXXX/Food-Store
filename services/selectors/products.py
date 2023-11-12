@@ -5,32 +5,13 @@ from models import Product
 
 def get_products() -> list[Product]:
     with session_maker() as session:
-        query = (select(Product))
+        query = select(Product)
         result = session.execute(query)
         return result.scalars().all()
 
 
-def get_product_name() -> list[Product]:
+def get_product_by_id(identifier: int) -> Product | None:
     with session_maker() as session:
-        query = (select(Product.name))
+        query = select(Product).where(Product.id == identifier)
         result = session.execute(query)
-        return result.scalars().all()
-    
-
-def get_product_amount() -> list[str]:
-    with session_maker() as session:
-        query = (select(Product.amount))
-        result = session.execute(query)
-        return result.scalars().all()
-
-
-def get_product_price() -> list[str]:
-    with session_maker() as session:
-        query = (select(Product.price))
-        result = session.execute(query)
-        return result.scalars().all()
-
-
-if __name__ == '__main__':
-    data = get_products()
-    print(data)
+        return result.scalars_one_or_none()
