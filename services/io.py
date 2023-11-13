@@ -5,7 +5,7 @@ from humanize import naturalday
 
 from services.selectors.products import get_products
 from services.selectors.purchase_history import get_purchase_history
-from validators import password_length_validator, username_length_validator
+from validators import password_length_validator, username_length_validator, validate_amount
 
 
 class AbstractAuthIO(ABC):
@@ -65,6 +65,7 @@ def get_product_name() -> str:
     return input("Enter the product you want to take: ")
 
 
+@validate_amount
 def get_amount() -> str:
     return input("Enter the amount of product you want to take: ")
 

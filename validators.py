@@ -37,3 +37,13 @@ def username_length_validator(func) -> callable:
             return wrapper(*args, **kwargs)
         return username
     return wrapper
+
+
+def validate_amount(func) -> callable:
+    def wrapper(*args, **kwargs) -> callable:
+        amount = func(*args, **kwargs)
+        temp_amount = amount.replace('.', '', 1)
+        if not temp_amount.isdigit():
+            print(f"{amount} is not valid amount")
+        return amount
+    return wrapper
