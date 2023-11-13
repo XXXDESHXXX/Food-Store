@@ -5,7 +5,7 @@ from services.io import get_amount
 
 class GetAmountTest(TestCase):
     @patch("builtins.input", return_value="35")
-    def test_valid_amount(self, mock_input) -> None:
+    def test_get_amount(self, *args, **kwargs) -> None:
         self.assertEqual(get_amount(), "35")
 
 
