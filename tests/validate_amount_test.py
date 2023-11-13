@@ -1,18 +1,21 @@
 from unittest import TestCase, main
+from unittest.mock import patch
 
+from services.io import get_amount
 from validators import validate_amount
 
 
 class AmountValidatorTest(TestCase):
-    def test_valid_amount(self) -> None:
-        self.assertEqual(validate_amount("254"), None)
+    @patch("builtins.input", return_value="254")
+    def test_valid_amount(self, *args, **kwargs) -> None:
+        self.assertEqual(validate_amount(get_amount)(), "254")
 
-    def test_invalid_amount(self) -> None:
-        amount = "254..1..23.4.5.4.3.2.3.4.52.1."
-        with self.assertRaises(ValueError) as e:
-            validate_amount(amount)
-        self.assertEqual(
-            f"{amount} is not valid amount", e.exception.args[0]
+    @patch("builtins.input", return_value="abc")
+    @patch("builtins.print")
+    def test_invalid_amount(self, mock_print, *args, **kwargs) -> None:
+        get_amount()
+        mock_print.assert_called_with(
+            "abc is not valid amount"
         )
 
 

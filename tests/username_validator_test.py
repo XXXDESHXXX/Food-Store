@@ -16,7 +16,7 @@ class UsernameValidatorTest(TestCase):
 
     @patch("builtins.input", side_effect=["USER", "VALID_USER"])
     @patch("builtins.print")
-    def test_minimum_username_length(self, mock_print, *args, **kwargs) -> None:
+    def test_minimum_username_length(self, mock_print: callable, *args, **kwargs) -> None:
         self.assertEqual(username_length_validator(self.auth_io.get_username)(), "VALID_USER")
         mock_print.assert_called_with(
             f"Username length must be greater than {MIN_USERNAME_LENGTH} or equal to {MAX_USERNAME_LENGTH}"
@@ -24,7 +24,7 @@ class UsernameValidatorTest(TestCase):
 
     @patch("builtins.input", side_effect=[max_username, "VALID_USER"])
     @patch("builtins.print")
-    def test_maximum_username_length(self, mock_print, *args, **kwargs) -> None:
+    def test_maximum_username_length(self, mock_print: callable, *args, **kwargs) -> None:
         self.assertEqual(username_length_validator(self.auth_io.get_username)(), "VALID_USER")
         mock_print.assert_called_with(
             f"Username length must be greater than {MIN_USERNAME_LENGTH} or equal to {MAX_USERNAME_LENGTH}"

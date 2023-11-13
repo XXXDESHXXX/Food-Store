@@ -16,14 +16,14 @@ class SavePurchaseTest(TestCase):
         name="coffee",
     )
 
-    def setUp(self):
+    def setUp(self) -> None:
         with session_maker() as session:
             session.add_all((self.product, self.user))
             session.commit()
             session.refresh(self.product)
             session.refresh(self.user)
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         with session_maker() as session:
             session.delete(self.product)
             session.delete(self.user)
