@@ -14,4 +14,4 @@ def get_product_by_id(identifier: int) -> Product | None:
     with session_maker() as session:
         query = select(Product).where(Product.id == identifier)
         result = session.execute(query)
-        return result.scalars_one_or_none()
+        return result.scalars().one_or_none()

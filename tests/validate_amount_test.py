@@ -12,7 +12,7 @@ class AmountValidatorTest(TestCase):
 
     @patch("builtins.input", return_value="abc")
     @patch("builtins.print")
-    def test_invalid_amount(self, mock_print, *args, **kwargs) -> None:
+    def test_invalid_amount(self, mock_print: print, *args, **kwargs) -> None:
         get_amount()
         mock_print.assert_called_with(
             "abc is not valid amount"

@@ -22,7 +22,7 @@ class GetMenuOptionTest(TestCase):
 
     @patch("builtins.input", side_effect=["123456", "1"])
     @patch("builtins.print")
-    def test_invalid_option(self, mock_print: callable, *args, **kwargs) -> None:
+    def test_invalid_option(self, mock_print: print, *args, **kwargs) -> None:
         self.assertEqual(get_menu_option(), MenuOptions.PURCHASE_MENU)
         mock_print.assert_called_with("Invalid option selected")
 

@@ -16,7 +16,7 @@ class PasswordValidatorTest(TestCase):
 
     @patch("builtins.input", side_effect=["12345", "123456789"])
     @patch("builtins.print")
-    def test_minimum_password_length(self, mock_print: callable, *args, **kwargs) -> None:
+    def test_minimum_password_length(self, mock_print: print, *args, **kwargs) -> None:
         self.assertEqual(password_length_validator(self.auth_io.get_password)(), "123456789")
         mock_print.assert_called_with(
             f"Password length must be greater than {MIN_PASSWORD_LENGTH} or equal to {MAX_PASSWORD_LENGTH}"
@@ -24,7 +24,7 @@ class PasswordValidatorTest(TestCase):
 
     @patch("builtins.input", side_effect=[max_password, "123456789"])
     @patch("builtins.print")
-    def test_maximum_password_length(self, mock_print: callable, *args, **kwargs) -> None:
+    def test_maximum_password_length(self, mock_print: print, *args, **kwargs) -> None:
         self.assertEqual(password_length_validator(self.auth_io.get_password)(), "123456789")
         mock_print.assert_called_with(
             f"Password length must be greater than {MIN_PASSWORD_LENGTH} or equal to {MAX_PASSWORD_LENGTH}"
