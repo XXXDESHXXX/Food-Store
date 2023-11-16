@@ -7,5 +7,5 @@ class CalculatePriceTest(TestCase):
         self.assertEqual(calculate_price(2, 2.5), 5)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

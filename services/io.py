@@ -5,7 +5,11 @@ from humanize import naturalday
 
 from services.selectors.products import get_products
 from services.selectors.purchase_history import get_purchase_history
-from validators import password_length_validator, username_length_validator, validate_amount
+from validators import (
+    password_length_validator,
+    username_length_validator,
+    validate_amount,
+)
 
 
 class AbstractAuthIO(ABC):
@@ -75,10 +79,10 @@ def show_purchase_history(user_id: int) -> None:
     for i, purchase in enumerate(user_purchases, start=1):
         print(
             f"""
-            {i}, {purchase.price}
-            Amount is {purchase.amount}
-            Date of creation: {naturalday(purchase.created_at)}.
-            """
+                {i}, {purchase.product.price}
+                Amount is {purchase.amount}
+                Date of creation: {naturalday(purchase.created_at)}.
+                """
         )
     else:
         print("There is no previous purchases")

@@ -9,5 +9,5 @@ class GetAmountTest(TestCase):
         self.assertEqual(get_amount(), "35")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

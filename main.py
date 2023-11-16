@@ -1,8 +1,16 @@
 from database import create_tables
 from services.auth import create_user, log_in
 from services.calculator import calculate_price
-from services.io import AuthIO, is_want_to_register, get_menu_option, MenuOptions, show_purchase_history, show_products, \
-    get_amount, get_product_id
+from services.io import (
+    AuthIO,
+    is_want_to_register,
+    get_menu_option,
+    MenuOptions,
+    show_purchase_history,
+    show_products,
+    get_amount,
+    get_product_id,
+)
 from services.purchase_history import save_purchase
 from services.selectors.products import get_product_by_id
 
@@ -23,11 +31,11 @@ def main() -> None:
         match menu_option:
             case MenuOptions.PURCHASE_MENU:
                 product_id = get_product_id()
-                amount = get_amount()
+                amount = int(get_amount())
                 product = get_product_by_id(int(product_id))
                 try:
-                    print(calculate_price(int(amount), product.price))
-                    save_purchase(product.id, user.id)
+                    print(calculate_price(amount, product.price))
+                    save_purchase(product.id, user.id, amount)
                 except AttributeError:
                     print("Product was not found")
             case MenuOptions.PRINT_PURCHASE_HISTORY:

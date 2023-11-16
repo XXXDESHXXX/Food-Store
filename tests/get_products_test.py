@@ -1,16 +1,12 @@
 from unittest import TestCase, main
 
 from database import session_maker
-from models import Product
 from services.selectors.products import get_products
+from utils import create_test_product
 
 
 class GetProductsTest(TestCase):
-    product = Product(
-        price=10.99,
-        amount=2,
-        name="coffee",
-    )
+    product = create_test_product()
 
     def setUp(self) -> None:
         with session_maker() as session:
@@ -30,5 +26,5 @@ class GetProductsTest(TestCase):
         self.assertEqual(any(map(lambda p: p.id == self.product.id, products)), True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

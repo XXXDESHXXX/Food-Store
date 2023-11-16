@@ -1,12 +1,13 @@
 from unittest import TestCase, main
+from unittest.mock import patch
 
 from database import session_maker
-from models import User
-from services.selectors.user import get_user
+from services.auth import log_in
+from services.io import AuthIO
 from utils import create_test_user
 
 
-class GetUserTest(TestCase):
+class LogInTest(TestCase):
     user = create_test_user()
 
     def setUp(self) -> None:
@@ -20,13 +21,11 @@ class GetUserTest(TestCase):
             session.delete(self.user)
             session.commit()
 
-    def test_get_user(self, *args, **kwargs):
-        user = get_user(self.user.username)
-        self.assertIsNotNone(user)
-        self.assertIsInstance(user, User)
+    @patch("services.io.AuthIO.get_password", side_effect=["INVALID", user.password])
+    @patch("services.io.AuthIO.get_username", side_effect=["INVALID", user.username])
+    def test_log_in(self, *args, **kwargs):
+        user = log_in(AuthIO())
         self.assertEqual(user.id, self.user.id)
-        self.assertEqual(user.username, self.user.username)
-        self.assertEqual(user.password, self.user.password)
 
 
 if __name__ == "__main__":

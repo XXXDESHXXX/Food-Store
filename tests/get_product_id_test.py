@@ -9,5 +9,5 @@ class GetProductNameTest(TestCase):
         self.assertEqual(get_product_id(), 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

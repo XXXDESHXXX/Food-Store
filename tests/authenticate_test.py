@@ -1,12 +1,11 @@
 from unittest import TestCase, main
 
 from database import session_maker
-from models import User
-from services.selectors.user import get_user
+from services.auth import authenticate
 from utils import create_test_user
 
 
-class GetUserTest(TestCase):
+class AuthenticateTest(TestCase):
     user = create_test_user()
 
     def setUp(self) -> None:
@@ -20,13 +19,9 @@ class GetUserTest(TestCase):
             session.delete(self.user)
             session.commit()
 
-    def test_get_user(self, *args, **kwargs):
-        user = get_user(self.user.username)
-        self.assertIsNotNone(user)
-        self.assertIsInstance(user, User)
+    def test_authenticate(self, *args, **kwargs):
+        user = authenticate(self.user.username, self.user.password)
         self.assertEqual(user.id, self.user.id)
-        self.assertEqual(user.username, self.user.username)
-        self.assertEqual(user.password, self.user.password)
 
 
 if __name__ == "__main__":

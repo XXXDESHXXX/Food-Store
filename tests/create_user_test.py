@@ -7,9 +7,8 @@ from services.auth import create_user
 
 class CreateUserTest(TestCase):
     def setUp(self) -> None:
-        with session_maker() as session:
-            self.username = "testuser"
-            self.password = "testpassword"
+        self.username = "testuser"
+        self.password = "testpassword"
 
     def tearDown(self) -> None:
         with session_maker() as session:
@@ -25,5 +24,5 @@ class CreateUserTest(TestCase):
             self.assertEqual(user.username, self.username)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
