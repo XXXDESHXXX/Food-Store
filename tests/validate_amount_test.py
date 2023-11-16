@@ -14,10 +14,8 @@ class AmountValidatorTest(TestCase):
     @patch("builtins.print")
     def test_invalid_amount(self, mock_print: print, *args, **kwargs) -> None:
         get_amount()
-        mock_print.assert_called_with(
-            "abc is not valid amount"
-        )
+        mock_print.assert_called_with("abc is not valid amount")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
