@@ -61,8 +61,8 @@ def get_menu_option() -> MenuOptions:
     return options_map[option]
 
 
-def get_product_name() -> str:
-    return input("Enter the product you want to take: ")
+def get_product_id() -> str:
+    return input("Enter the product id you want to take: ")
 
 
 @validate_amount
